@@ -1,23 +1,28 @@
-<h1>Lists</h1>
-<ul class="list-group">
-  <% @lists.each do |list|%>
-    <li class="list-group-item">
-      <%= link_to list.name, list_path(list) %>
-    </li>
-<% end %>
 
-<h2>Movies</h2>
-<ul class="list-group">
-  <% @movies.each do |movie|%>
-    <li class="list-group-item">
-      <%= movie.id %>
-      <%= movie.title%>
-      <%= movie.overview %>
-      <%= movie.poster_url%>
-      <%= movie.rating%>
-    </li>
-<% end %>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= asset_path('cinema.jpg') %>);">
+  <div class="container">
+    <h1>All your movies in one place</h1>
+  </div>
+</div>
 
-<%= link_to new_list_path do%>
-  <i class="fas fa-plus btn btn-primary mt-4 text-white p-3"> Add a new list</i>
-<% end %>
+<div class="container">
+  <div class="d-flex space-between align-items-center justify-content-between">
+    <h2 class="mt-5 mb-5">My Lists</h2>
+      <%= link_to new_list_path do%>
+        <i class="fas fa-film mt-4 p-3 btn btn-danger"> Create a list</i>
+      <% end %>
+  </div>
+
+  <div class="row">
+    <% @lists.each do |list| %>
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <%= link_to list_path(list), class:'text-decoration-none' do %>
+        <div class="card-category mb-4" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1478720568477-152d9b164e26?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80)">
+          <%= list.name %>
+        </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
