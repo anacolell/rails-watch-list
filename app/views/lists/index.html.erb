@@ -1,0 +1,23 @@
+<h1>Lists</h1>
+<ul class="list-group">
+  <% @lists.each do |list|%>
+    <li class="list-group-item">
+      <%= link_to list.name, list_path(list) %>
+    </li>
+<% end %>
+
+<h2>Movies</h2>
+<ul class="list-group">
+  <% @movies.each do |movie|%>
+    <li class="list-group-item">
+      <%= movie.id %>
+      <%= movie.title%>
+      <%= movie.overview %>
+      <%= movie.poster_url%>
+      <%= movie.rating%>
+    </li>
+<% end %>
+
+<%= link_to new_list_path do%>
+  <i class="fas fa-plus btn btn-primary mt-4 text-white p-3"> Add a new list</i>
+<% end %>
