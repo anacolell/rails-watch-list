@@ -1,39 +1,34 @@
 
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= asset_path('movie_card.jpg') %>);">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_path @list.photo.key %>');">
   <div class="container">
     <h1><%= @list.name %></h1>
   </div>
 </div>
-
 <div class="container">
-<div class="row">
-  <% @list.bookmarks.each do |bookmark| %>
-  <div class="col-xs-12 col-sm-6 col-md-4 mt-4">
-      <div class="card-movie">
-        <img src=<%= bookmark.movie.poster_url %> />
-        <div class="card-movie-infos">
-          <div>
+  <div class="d-flex justify-content-stretch">
+    <div class="cards">
+      <% @list.bookmarks.each do |bookmark| %>
+        <div class="card-movie mb-3">
+          <%= image_tag bookmark.movie.poster_url %>
+            <div class="card-movie-infos">
+              <div>
             <h3><%= bookmark.movie.title %></h3>
-            <p><%= bookmark.movie.overview %></p>
-            <div class="d-flex justify-content-between align-items-center m-2">
             <p><%= bookmark.movie.rating %></p>
+            <p><%= bookmark.movie.overview %></p>
             <%= link_to bookmark_path(bookmark), method: :delete, data: { confirm: "Are you sure?" }, class: 'card-remove-link' do %>
               <i class="fas fa-trash"></i>
-            </div>
             <% end %>
           </div>
         </div>
     </div>
-  </div>
   <% end %>
-
+  </div>
+<div class ="form">
 <%= simple_form_for [@list, @bookmark] do |f| %>
   <%= f.input :comment %>
   <%= f.association :movie %>
   <%= f.button :submit, class:"btn btn-primary" %>
 <% end %>
 </div>
-
-<%= link_to "Delete this list", list_path(@list), method: :delete, data: {confirm: "Are your sure?"}  %>
-
+</div>
 
