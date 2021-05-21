@@ -1,4 +1,10 @@
-<h1><%= @list.name %></h1>
 
-<%= link_to "Delete this list", list_path(@list), method: :delete, data: {confirm: "Are your sure?"}  %>
-<%= link_to 'Back to lists', lists_path, class: 'btn btn-primary mt-4 mb-4 text-white'%>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= asset_path('movie_card.jpg') %>);">
+  <div class="container">
+    <h1><%= @list.name %></h1>
+  </div>
+</div>
+
+<!-- <\%= link_to "Delete this list", list_path(@list), method: :delete, data: {confirm: "Are your sure?"}  %>
+<\%= link_to 'Back to lists', lists_path, class: 'btn btn-primary mt-4 mb-4 text-white'%>
+ -->
