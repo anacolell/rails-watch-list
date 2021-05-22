@@ -2,6 +2,7 @@ class ListsController < ApplicationController
   before_action :set_list, only: %i[show destroy]
   def index
     @lists = List.all
+    @list = List.new
   end
 
   def show
@@ -16,9 +17,9 @@ class ListsController < ApplicationController
   def create
     @list = List.new(list_params)
     if @list.save
-      redirect_to list_path(@list)
+      redirect_to root_path(@list)
     else
-      render :new
+      redirect_to root_path, alert: @list.errors.full_messages.to_sentence
     end
   end
 

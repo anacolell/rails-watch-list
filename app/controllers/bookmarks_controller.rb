@@ -11,7 +11,7 @@ class BookmarksController < ApplicationController
     if @bookmark.save
       redirect_to list_path(@list)
     else
-      render 'lists/show'
+      redirect_to list_path(@list), alert: @bookmark.errors.full_messages.to_sentence
     end
   end
 

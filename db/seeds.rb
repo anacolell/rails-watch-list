@@ -6,25 +6,47 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-require 'open-uri'
-require 'json'
+# require 'open-uri'
+# require 'json'
 
-puts 'Cleaning database...'
-Movie.destroy_all
-puts 'Populating database'
+# puts 'Cleaning database...'
+# Movie.destroy_all
+# puts 'Populating database'
 
-url = 'http://tmdb.lewagon.com/movie/top_rated'
-file = URI.open(url).read
+# url = 'http://tmdb.lewagon.com/movie/top_rated'
+# file = URI.open(url).read
 
-movies = JSON.parse(file)
+# movies = JSON.parse(file)
 
-movies['results'].each do |movie|
-  title = movie['title']
-  overview = movie['overview']
-  poster_url = "https://image.tmdb.org/t/p/w500/#{movie['poster_path']}"
-  rating = movie['vote_average']
-  movie = Movie.create(title: title, overview: overview, poster_url: poster_url, rating: rating)
-  puts "#{movie.id} - #{movie.title} created"
-end
+# movies['results'].each do |movie|
+#   title = movie['title']
+#   overview = movie['overview']
+#   poster_url = "https://image.tmdb.org/t/p/w500/#{movie['poster_path']}"
+#   rating = movie['vote_average']
+#   movie = Movie.create(title: title, overview: overview, poster_url: poster_url, rating: rating)
+#   puts "#{movie.id} - #{movie.title} created"
+# end
 
 puts "#{Movie.count} movies created"
+
+require 'open-uri'
+require 'json'
+puts "Cleaning up database..."
+Movie.destroy_all
+puts "Database cleaned"
+url = "http://tmdb.lewagon.com/movie/top_rated"
+15.times do |i|
+  puts "Importing movies from page #{i + 1}"
+  movies = JSON.parse(open("#{url}?page=#{i + 1}").read)['results']
+  movies.each do |movie|
+    puts "Creating #{movie['title']}"
+    base_poster_url = "https://image.tmdb.org/t/p/original"
+    Movie.create(
+      title: movie['title'],
+      overview: movie['overview'],
+      poster_url: "#{base_poster_url}#{movie['backdrop_path']}",
+      rating: movie['vote_average']
+    )
+  end
+end
+puts "Movies created"

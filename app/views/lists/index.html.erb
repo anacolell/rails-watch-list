@@ -6,11 +6,12 @@
 </div>
 
 <div class="container">
+
   <div class="d-flex space-between align-items-center justify-content-between">
     <h2 class="mt-5 mb-5">My Lists</h2>
-      <%= link_to new_list_path do%>
-        <i class="fas fa-film mt-4 p-3 btn btn-danger"> Create a list</i>
-      <% end %>
+      <button type="button" class="mt-4 p-3 btn btn-danger btn-lg" data-toggle="modal" data-target="#exampleModal">
+      <i class="fas fa-film "></i> Create a list
+      </button>
   </div>
 
   <div class="row">
@@ -25,3 +26,24 @@
     <% end %>
   </div>
 </div>
+
+<!-- Modal -->
+  <div class="modal fade" id="exampleModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <div class="modal-body">
+        <%= simple_form_for (@list) do |f| %>
+        <%= f.input :name %>
+        <%= f.input :photo, as: :file %>
+        <%= f.submit class:'btn btn-outline-primary w-100' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
