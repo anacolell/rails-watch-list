@@ -17,7 +17,7 @@ class ListsController < ApplicationController
   def create
     @list = List.new(list_params)
     if @list.save
-      redirect_to root_path(@list)
+      redirect_to list_path(@list)
     else
       redirect_to root_path, alert: @list.errors.full_messages.to_sentence
     end
