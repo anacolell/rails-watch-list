@@ -17,6 +17,7 @@ document.addEventListener('turbolinks:load', () => {
   // Call your JS functions here
   // [...]
   initSelect2();
+  loadDynamicBannerText();
 });
 
 // Uncomment to copy all static images under ../images to the output folder and reference
