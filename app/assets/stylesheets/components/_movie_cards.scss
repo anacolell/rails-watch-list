@@ -47,6 +47,13 @@
   .cards {
     grid-template-columns: 1fr;
   }
+  .header-show {
+    flex-direction:column;
+  }
+  .btn-show {
+    margin-top: 20px;
+    text-align:center;
+  }
 }
 
 // Small devices (landscape phones, 576px and up)

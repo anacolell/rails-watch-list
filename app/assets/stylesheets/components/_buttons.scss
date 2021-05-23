@@ -39,3 +39,19 @@
   background: linear-gradient(#147EFF, #0F67DA);
   color: white;
 }
+
+/* media queries for show page */
+@media screen and (max-width: 768px) {
+  .header-show {
+    flex-direction:column;
+  }
+
+  .tag-text{
+    display:block;
+  }
+  .btn-show {
+    margin:0;
+    margin-top: 20px;
+    text-align:center;
+  }
+}
