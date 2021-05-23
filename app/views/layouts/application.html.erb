@@ -13,7 +13,7 @@
   <body>
     <%= render 'shared/navbar' %>
     <% if flash[:alert] %>
-    <div class="alert alert-warning"><%= flash[:alert] %></div>
+      <div class="alert alert-warning"><%= flash[:alert] %></div>
     <% end %>
     <%= yield %>
     <%= render 'shared/footer' %>

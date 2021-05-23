@@ -9,17 +9,20 @@
 
   <div class="d-flex space-between align-items-center justify-content-between">
     <h2 class="mt-5 mb-5">My Lists</h2>
-      <button type="button" class="mt-4 p-3 btn btn-danger btn-lg" data-toggle="modal" data-target="#exampleModal">
-      <i class="fas fa-film "></i> Create a list
+      <button type="button" class="mt-4 p-3 btn btn-index btn-outline-danger shadow" data-toggle="modal" data-target="#exampleModal">
+      <i class="fas fa-film"></i> Create a list
       </button>
   </div>
 
-  <div class="row">
+  <div class="row mt-3 mb-5">
     <% @lists.each do |list| %>
       <div class="col-xs-12 col-sm-6 col-md-4">
         <%= link_to list_path(list), class:'text-decoration-none' do %>
         <div class="card-category mb-4" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path list.photo.key, height: 300, crop: :fill %>')">
           <%= list.name %>
+        </div>
+        <div class="tag">
+          <%= pluralize(list.movies.count, 'movie') %>
         </div>
         <% end %>
       </div>
